@@ -2,16 +2,16 @@
 
 Windows is the most plug and play experience with wider compatibility.
 
-In this setup, we will make sure it uses a local account because it's just better:
+In this setup, we will make sure it uses a local account because it's just better. You can use [Rufus](https://rufus.ie/en/) for an automated process or just follow the basic steps here in the setup process:
 
-- Install Windows in the disk and wait for the setup process initialization.
+- Install Windows 11 Pro on the disk and wait for the setup process initialization. 
 - In the setup process, choose "**Set up for work or school**" - this step is VERY IMPORTANT.
 - In the next step, do not type the Microsoft account and click in the "**Sign-in options**".
 - Select "**Domain join instead**" and type the username for the local account.
 - Type a password or leave empty to activate the automated login.
 - Finish the Windows setup.
 
-Once the Windows has been installed, please make sure to install all the necessary drivers for your hardware: 
+Once the Windows has been installed, please make sure to activate the Windows license and install all the necessary drivers for your hardware: 
 
 - AMD drivers: <https://www.amd.com/en/support/download/drivers.html>
 - Nvidia drivers: <https://www.nvidia.com/en-us/drivers>
@@ -21,7 +21,7 @@ When the basic system setup has been finished, open the ``Terminal`` application
 
 ## Basic Operations
 
-Process include commands to remove system bloatware, install basic packages and perform system upgrades:
+The process include commands to remove system bloatware, install basic packages and perform system upgrades:
 
 ```bash
 # Remove bloatware
@@ -58,7 +58,7 @@ winget upgrade --all --include-unknown
 
 ## Gaming Applications
 
-NiceDeck will be used to help with the installation of gaming applications and emulators.
+Now that the system is clean, you can install the desired gaming platform and additional applications. NiceDeck will be used to help with the installation of gaming applications and emulators because it offers additional automation for applications that usually are manually downloaded.
 
 Here is the instructions for usage with Windows:
 
@@ -73,7 +73,7 @@ wget $REPOSITORY/v0.2.4/nicedeck-windows-cli-amd64.exe -OutFile nicedeck.exe
 .\nicedeck.exe install --programs=nicedeck
 
 # Steam
-# NOTE: You should install Steam and log in with your account into Steam first 
+# NOTE: Is recommended to install Steam and log in with your account first
 .\nicedeck.exe install --programs=steam
 
 # Gaming Stores & Launchers
@@ -105,6 +105,7 @@ wget $REPOSITORY/v0.2.4/nicedeck-windows-cli-amd64.exe -OutFile nicedeck.exe
 
 # Emulators
 .\nicedeck.exe install --programs=cemu
+.\nicedeck.exe install --programs=citron
 .\nicedeck.exe install --programs=eden
 .\nicedeck.exe install --programs=pcsx2
 .\nicedeck.exe install --programs=rpcs3
@@ -113,7 +114,6 @@ wget $REPOSITORY/v0.2.4/nicedeck-windows-cli-amd64.exe -OutFile nicedeck.exe
 .\nicedeck.exe install --programs=xenia
 
 .\nicedeck.exe install --programs=azahar
-.\nicedeck.exe install --programs=citron
 .\nicedeck.exe install --programs=dolphin
 .\nicedeck.exe install --programs=duckstation
 .\nicedeck.exe install --programs=flycast
@@ -125,6 +125,8 @@ wget $REPOSITORY/v0.2.4/nicedeck-windows-cli-amd64.exe -OutFile nicedeck.exe
 .\nicedeck.exe install --programs=vita3k
 .\nicedeck.exe install --programs=xemu
 ```
+
+Additional applications for specific use cases are available in the next topics.
 
 ## Library Manager
 
@@ -162,36 +164,43 @@ winget install -e --id ClassicOldSong.Apollo
 winget install -e --id LizardByte.Sunshine
 ```
 
-## Windows Tweaks
+## Windows Performance Tips
+
+- Make sure to install the latest chipset and GPU driver in the system.
+- Set [Power Plan to High Performance](https://help.ableton.com/hc/en-us/articles/115000211304-Using-the-High-performance-power-plan-Windows-) in Control Panel.
+- Disable [Fast Startup](https://pureinfotech.com/disable-fast-startup-windows-11-10/) in the Power Options.
+- Disable [Xbox Game Bar](https://apps.microsoft.com/store/detail/9NZKPSTSNW4P?hl=pt-br&gl=BR) in Windows Settings.
+- Disable [Game Mode](https://support.xbox.com/en-US/help/games-apps/game-setup-and-play/use-game-mode-gaming-on-pc) in Windows Settings (yes, disable).
+- Enable [Variable Refresh Rate](https://www.elevenforum.com/t/enable-or-disable-variable-refresh-rate-for-games-in-windows-11.12052/) (VRR) in Graphics Settings.
+- Enable [Optimizations for Windowed Games](https://support.microsoft.com/en-us/windows/optimizations-for-windowed-games-in-windows-11-3f006843-2c7e-4ed0-9a5e-f9389e535952) in Graphics Settings.
+- On AMD GPUs, enable [Smart Access Memory](https://www.amd.com/en/technologies/smart-access-memory) on BIOS and AMD Software.
+
+## Windows Design Tweaks
 
 - Open "Settings" application.
-- Go to "Personalization" > "Colors" and set "Dark".
+- Go to "Personalization" > "Colors" and set color mode as "Dark".
 - Go to "Personalization" > "Start" and tweak the settings based on you preferences.
 - Go to "Personalization" > "Taskbar" and tweak the settings based on you preferences.
-- Go to "System" > "Multitasking" > and change the Alt+Tab experience to now show Microsoft Edge tabs.
+- Go to "System" > "Multitasking" > and change the Alt+Tab experience to not show/include Microsoft Edge tabs.
 
 ## Windows Automatic Login
 
-First, there a few required settings to automatic login works if you set up Windows with passwords:
+Disabling password requirement for login is pretty easy. If you want to disable password, there a few required settings to enable automatic login on Windows:
 
-- Open "Settings".
-- Go to "Accounts" > "Sign in Options".
-- Disable all "Windows Hello" ways to sign in options.
+- Open "Settings" application.
+- Go to "Accounts" > "Sign-in Options".
 - Disable the "For improved security, only allow Windows Hello sign-in for Microsoft accounts on this device" option.
 - Disable the "Use my sign-in info to automatically finish setting up after an update" option.
 - Set "If you've been away, when should Windows require you to sign in again?" as "Never" to avoid typing passwords when computer wake up from sleep.
 - In the "Dynamic lock" section, uncheck the available option.
+- Disable all "Windows Hello" options to use only the password option.
 
-On the requirements are meet, you can disable password requirement with the Microsoft provided solution:
+Now, to remove the account password, follow the steps below:
 
-```bash
-# Install
-winget install --id=Sysinternals.Autologon  -e
-
-# Open new terminal tab and execute the program
-# In the GUI, type account password and click "Enable"
-AutoLogon64.exe
-```
+- In the "Password" option, click on "Change" button.
+- Type the current password and click on "Next" button.
+- Leave the new password fields empty and click "Next".
+- Finally, click on "Finish" to complete the process.
 
 Restart the system and see that the automatic login feature is working.
 
