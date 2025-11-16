@@ -290,6 +290,7 @@ flatpak install -y flathub io.missioncenter.MissionCenter
 
 ## Finishing Setup 
 
+Make sure to check out the tweaks section for more specific tips.
 That is it, just reboot the system and you are done:
 
 ```bash
