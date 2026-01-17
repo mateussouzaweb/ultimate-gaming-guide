@@ -45,6 +45,12 @@ sudo dnf update -y
 Better media codecs (please use the commands based on your graphics card):
 
 ```bash
+# Add RPM-Fusion
+# https://rpmfusion.org/Configuration
+sudo dnf install \
+  https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+  https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
 # Install media codecs with RPM-Fusion
 # https://rpmfusion.org/Howto/Multimedia
 sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1

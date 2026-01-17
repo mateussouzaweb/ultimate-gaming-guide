@@ -9,8 +9,13 @@ Fedora is a pretty capable system for gaming, and offers immutable OS options in
 If you are using Nvidia GPUs, you should also install the Nvidia drivers after finishing installation:
 
 ```bash
-# Nvidia drivers
+# Add RPM-Fusion
 # https://rpmfusion.org/Howto/OSTree
+rpm-ostree install -y \
+  https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+  https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# Nvidia drivers
 # https://rpmfusion.org/Howto/NVIDIA
 rpm-ostree install -y akmod-nvidia
 rpm-ostree kargs \
@@ -46,6 +51,12 @@ rpm-ostree install -y p7zip flatpak-xdg-utils steam-devices
 Better media codecs (please use the commands based on your graphics card):
 
 ```bash
+# Add RPM-Fusion (skip if already installed)
+# https://rpmfusion.org/Howto/OSTree
+rpm-ostree install -y \
+  https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+  https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
 # Install media codecs with RPM-Fusion
 # https://rpmfusion.org/Howto/OSTree
 rpm-ostree override remove ffmpeg-free libavcodec-free libavdevice-free \
