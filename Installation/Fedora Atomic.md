@@ -150,17 +150,14 @@ Here is the instructions for usage with Linux:
 ```bash
 # Download executable
 REPOSITORY="https://github.com/mateussouzaweb/nicedeck/releases/download"
-sudo wget $REPOSITORY/v0.2.4/nicedeck-linux-amd64 -O ./nicedeck
+sudo wget $REPOSITORY/v0.2.5/nicedeck-linux-amd64 -O ./nicedeck
 sudo chmod +x ./nicedeck
 
 # Self installer
 ./nicedeck install --programs=nicedeck
 
-# Steam
-# NOTE: You should install Steam and log in with your account into Steam first 
-./nicedeck install --programs=steam
-
 # Gaming Stores & Launchers
+./nicedeck install --programs=steam
 ./nicedeck install --programs=epic-games
 ./nicedeck install --programs=ea-app
 ./nicedeck install --programs=ubisoft-connect

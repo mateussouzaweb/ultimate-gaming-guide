@@ -67,16 +67,13 @@ Here is the instructions for usage with Windows:
 # https://github.com/mateussouzaweb/nicedeck
 cd "$env:USERPROFILE\Downloads"
 $REPOSITORY="https://github.com/mateussouzaweb/nicedeck/releases/download"
-wget $REPOSITORY/v0.2.4/nicedeck-windows-cli-amd64.exe -OutFile nicedeck.exe
+wget $REPOSITORY/v0.2.5/nicedeck-windows-cli-amd64.exe -OutFile nicedeck.exe
 
 # Self installer
 .\nicedeck.exe install --programs=nicedeck
 
-# Steam
-# NOTE: Is recommended to install Steam and log in with your account first
-.\nicedeck.exe install --programs=steam
-
 # Gaming Stores & Launchers
+.\nicedeck.exe install --programs=steam
 .\nicedeck.exe install --programs=epic-games
 .\nicedeck.exe install --programs=ea-app
 .\nicedeck.exe install --programs=ubisoft-connect
