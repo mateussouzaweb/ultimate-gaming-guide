@@ -139,7 +139,7 @@ Here is the instructions for usage with Linux:
 ```bash
 # Download executable
 REPOSITORY="https://github.com/mateussouzaweb/nicedeck/releases/download"
-sudo wget $REPOSITORY/v0.2.5/nicedeck-linux-amd64 -O ./nicedeck
+sudo wget $REPOSITORY/v0.3.2/nicedeck-linux-amd64 -O ./nicedeck
 sudo chmod +x ./nicedeck
 
 # Self installer
