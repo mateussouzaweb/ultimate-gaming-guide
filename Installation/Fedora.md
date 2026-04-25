@@ -178,7 +178,6 @@ sudo chmod +x ./nicedeck
 
 # Emulators
 ./nicedeck install --programs=cemu
-./nicedeck install --programs=citron
 ./nicedeck install --programs=eden
 ./nicedeck install --programs=pcsx2
 ./nicedeck install --programs=rpcs3

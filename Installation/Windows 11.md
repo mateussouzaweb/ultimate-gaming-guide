@@ -102,7 +102,6 @@ wget $REPOSITORY/v0.3.2/nicedeck-windows-cli-amd64.exe -OutFile nicedeck.exe
 
 # Emulators
 .\nicedeck.exe install --programs=cemu
-.\nicedeck.exe install --programs=citron
 .\nicedeck.exe install --programs=eden
 .\nicedeck.exe install --programs=pcsx2
 .\nicedeck.exe install --programs=rpcs3
