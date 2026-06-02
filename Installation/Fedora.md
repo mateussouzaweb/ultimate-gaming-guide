@@ -138,8 +138,8 @@ Here is the instructions for usage with Linux:
 
 ```bash
 # Download executable
-REPOSITORY="https://github.com/mateussouzaweb/nicedeck/releases/download"
-sudo wget $REPOSITORY/v0.3.2/nicedeck-linux-amd64 -O ./nicedeck
+REPOSITORY="https://github.com/mateussouzaweb/nicedeck"
+sudo wget $REPOSITORY/releases/latest/download/nicedeck-linux-amd64 -O ./nicedeck
 sudo chmod +x ./nicedeck
 
 # Self installer

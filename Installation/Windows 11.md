@@ -64,10 +64,9 @@ Here is the instructions for usage with Windows:
 
 ```bash
 # Download executable
-# https://github.com/mateussouzaweb/nicedeck
 cd "$env:USERPROFILE\Downloads"
-$REPOSITORY="https://github.com/mateussouzaweb/nicedeck/releases/download"
-wget $REPOSITORY/v0.3.2/nicedeck-windows-cli-amd64.exe -OutFile nicedeck.exe
+$REPOSITORY="https://github.com/mateussouzaweb/nicedeck"
+wget $REPOSITORY/releases/latest/download/nicedeck-windows-cli-amd64.exe -OutFile nicedeck.exe
 
 # Self installer
 .\nicedeck.exe install --programs=nicedeck
