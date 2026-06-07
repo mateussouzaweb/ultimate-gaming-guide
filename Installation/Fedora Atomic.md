@@ -5,35 +5,88 @@ Fedora is a pretty capable system for gaming, and offers immutable OS options in
 - You can choose to install **Fedora Silverblue** or **Fedora Kinoite** and it should work for others desktop environments as well that are provided by Fedora in Atomic Desktop format.
 - Install Fedora in the disk and finish the setup process. There are no special steps in the setup, just install Fedora.
 - The installation will require a password to be completed, however, you can remove the password later to activate automated login.
+- Once the system has been installed, open the ``Terminal`` (Gnome) or ``Konsole`` (KDE) application and run the commands below to perform automated gaming setup.
+- Due to nature of Atomic desktops, you will need to reboot the system a few times in order to complete the setup.
 
-If you are using Nvidia GPUs, you should also install the Nvidia drivers after finishing installation:
+## System Update
+
+Perform a full system update to make sure everything is updated:
+
+```bash
+# Update system packages and reboot
+rpm-ostree update
+systemctl reboot
+```
+
+## Enable RPM-Fusion
+
+After system upgrade, we enable RPM-Fusion on the system. This step is very important for critical packages:
 
 ```bash
 # Add RPM-Fusion
-# https://rpmfusion.org/Howto/OSTree
+# https://rpmfusion.org/Configuration
 rpm-ostree install -y \
   https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
   https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+# Reboot to activate
+systemctl reboot
+```
+
+## Nvidia Drivers
+
+If you are using Nvidia GPUs, you should also install the Nvidia drivers:
+
+```bash
 # Nvidia drivers
 # https://rpmfusion.org/Howto/NVIDIA
 rpm-ostree install -y akmod-nvidia
 rpm-ostree kargs \
   --append-if-missing="rd.driver.blacklist=nouveau" \
   --append-if-missing="modprobe.blacklist=nouveau"
+
+# Reboot to activate
+systemctl reboot
 ```
 
-Once the system has been installed, open the ``Terminal`` (Gnome) or ``Konsole`` (KDE) application and run the commands below to perform automated gaming setup.
+# Better Media Codecs
 
-## Basic Operations
-
-Here are the steps to perform if you are using immutable OS to remove bloatware, install basic packages and perform system upgrades:
+Necessary because Fedora don't use proprietary media codecs by default:
 
 ```bash
-# Update system and reboot
-rpm-ostree update
-systemctl reboot
+# Install media codecs with RPM-Fusion
+# https://rpmfusion.org/Howto/OSTree
+rpm-ostree override remove ffmpeg-free libavcodec-free libavdevice-free \
+  libavfilter-free libavformat-free libavutil-free \
+  libpostproc-free libswresample-free libswscale-free \
+  --install=ffmpeg \
+  --install=ffmpeg-libs \
+  --install=libva-utils \
+  --install gstreamer1-vaapi \
+  --install gstreamer1-plugin-libav \
+  --install gstreamer1-plugins-bad-free-extras \
+  --install gstreamer1-plugins-bad-freeworld \
+  --install gstreamer1-plugins-ugly
+```
 
+Now, please **use the commands based on your graphics card**:
+
+```bash
+# Codecs for AMD
+rpm-ostree install -y mesa-va-drivers-freeworld mesa-va-drivers-freeworld.i686
+
+# Codecs for Nvidia
+rpm-ostree install -y libva-nvidia-driver libva-nvidia-driver.i686 libva-nvidia-driver.x86_64
+
+# Codecs for Intel
+rpm-ostree install -y intel-media-driver
+```
+
+## System Optimizations
+
+Remove bloatware:
+
+```bash
 # KDE ONLY
 # Remove KDE bloatware
 rpm-ostree override remove \
@@ -43,54 +96,14 @@ rpm-ostree override remove \
 # GNOME ONLY
 # Remove Gnome bloatware
 rpm-ostree override remove gnome-tour firefox firefox-*
+```
 
+Install basic packages - please note that in **Fedora Atomic** installations, you can setup a custom environment with ``toolbx`` to install others native only applications like a traditional OS. See the oficial ``toolbx`` guide for more details:
+
+```bash
 # Add basic packages
 rpm-ostree install -y p7zip flatpak-xdg-utils steam-devices
 ```
-
-Better media codecs (please use the commands based on your graphics card):
-
-```bash
-# Add RPM-Fusion (skip if already installed)
-# https://rpmfusion.org/Howto/OSTree
-rpm-ostree install -y \
-  https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-  https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-
-# Install media codecs with RPM-Fusion
-# https://rpmfusion.org/Howto/OSTree
-rpm-ostree override remove ffmpeg-free libavcodec-free libavdevice-free \
-  libavfilter-free libavformat-free libavutil-free \
-  libpostproc-free libswresample-free libswscale-free \
-  --install=ffmpeg \
-  --install=ffmpeg-libs \
-  --install=libva-utils \
-  --install=vdpauinfo \
-  --install=gstreamer1-plugins-bad-free-extras \
-  --install=gstreamer1-plugins-bad-freeworld \
-  --install=gstreamer1-plugins-ugly \
-  --install=gstreamer1-vaapi
-
-# Codecs for AMD
-rpm-ostree override remove mesa-va-drivers mesa-vdpau-drivers \
-  mesa-va-drivers.i686 mesa-vdpau-drivers.i686 \
-  --install=mesa-va-drivers-freeworld \
-  --install=mesa-vdpau-drivers-freeworld \
-  --install=mesa-vdpau-drivers-freeworld.i686 \
-  --install=mesa-vdpau-drivers-freeworld.i686
-
-# Codecs for Nvidia
-rpm-ostree install -y libva-nvidia-driver \
-  libva-nvidia-driver.i686 \
-  libva-nvidia-driver.x86_64
-
-# Codecs for Intel
-rpm-ostree install -y intel-media-driver
-```
-
-Please note that in **Fedora Atomic** installations, you can setup a custom environment with ``toolbx`` to install others native only applications like a traditional OS. See the oficial ``toolbx`` guide for more details.
-
-## System Optimizations
 
 Makes startup boot significantly faster by disabling network await:
 
@@ -123,7 +136,7 @@ flatpak remove -y org.gnome.Snapshot
 flatpak remove -y org.gnome.Maps
 
 # Reinstall apps from FlatHub and update everything else
-REINSTALL=$(flatpak list --columns=application | grep -v fedora)
+REINSTALL=$(flatpak list --app --columns=application,origin | grep fedora | awk '{print $1}')
 flatpak install -y --reinstall flathub $(echo $REINSTALL)
 flatpak update -y
 
@@ -214,6 +227,7 @@ sudo chmod +x ./nicedeck
 Proton GE compatibility layer for non Steam games and applications:
 
 ```bash
+# Flatpak extension
 # When using Steam flatpak
 flatpak install -y flathub com.valvesoftware.Steam.CompatibilityTool.Proton-GE
 ```
@@ -236,7 +250,8 @@ flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.vkBasalt
 
 ## Virtual Reality
 
-Unfortunately, VR on Linux is very experimental yet and is even more harder on immutable OS. Please remember that only the Steam native application can run SteamVR titles on Linux, so we will not recommend any application for VR on Fedora Atomic.
+Unfortunately, VR on Linux is very experimental yet and is even more harder on immutable OS. \
+Please remember that only the Steam native application can run SteamVR titles on Linux, so we will not recommend any application for VR on Fedora Atomic.
 
 ## Racing Steering Wheel
 
@@ -291,7 +306,5 @@ That is it, just reboot the system and you are done:
 ```bash
 systemctl reboot
 ```
-
-Linux is always improving on gaming, but please be aware that most online games does not work due to anti-cheat programs.
 
 Have a good gaming!

@@ -5,19 +5,67 @@ Fedora is a pretty capable system for gaming, so we will create a full gaming OS
 - You can choose to install **Fedora Workstation** or **Fedora KDE** and it should work for others desktop environments as well that are provided by Fedora, just pick the best for you.
 - Install Fedora in the disk and finish the setup process. There are no special steps in the setup, just install Fedora.
 - The installation will require a password to be completed, however, you can remove the password later to activate automated login.
+- Once the system has been installed, open the ``Terminal`` (Gnome) or ``Konsole`` (KDE) application and run the commands below to perform automated gaming setup.
 
-If you are using Nvidia GPUs, you should also install the Nvidia drivers after finishing installation:
+## System Update
+
+Perform a full system update to make sure everything is updated:
+
+```bash
+# Update system packages and reboot
+sudo dnf update -y
+systemctl reboot
+```
+
+## Enable RPM-Fusion
+
+After system upgrade, we enable RPM-Fusion on the system. This step is very important for critical packages:
+
+```bash
+# Add RPM-Fusion
+# https://rpmfusion.org/Configuration
+sudo dnf install \
+  https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+  https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+```
+
+## Nvidia Drivers
+
+If you are using Nvidia GPUs, you should also install the Nvidia drivers:
 
 ```bash
 # Nvidia drivers
 sudo dnf install -y akmod-nvidia
 ```
 
-Once the system has been installed, open the ``Terminal`` (Gnome) or ``Konsole`` (KDE) application and run the commands below to perform automated gaming setup.
+## Better Media Codecs
 
-## Basic Operations
+Necessary because Fedora don't use proprietary media codecs by default:
 
-Here are the relevant commands to remove bloatware, install basic packages and perform system upgrades:
+```bash
+# Install media codecs with RPM-Fusion
+# https://rpmfusion.org/Howto/Multimedia
+sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
+sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+sudo dnf install -y ffmpeg-libs libva libva-utils
+```
+
+Now, please **use the commands based on your graphics card**:
+
+```bash
+# Codecs for AMD
+sudo dnf install -y mesa-va-drivers-freeworld mesa-va-drivers-freeworld.i686
+
+# Codecs for Nvidia
+sudo dnf install -y libva-nvidia-driver libva-nvidia-driver.i686 libva-nvidia-driver.x86_64
+
+# Codecs for Intel
+sudo dnf install -y intel-media-driver
+```
+
+## System Optimizations
+
+Remove bloatware:
 
 ```bash
 # KDE ONLY
@@ -32,47 +80,16 @@ sudo dnf remove -y kamoso kpat kmines kaddressbook \
 # Gnome ONLY
 # Remove Gnome bloatware
 sudo dnf remove -y gnome-tour firefox firefox-*
+```
 
+Install basic packages:
+
+```bash
 # Add basic packages
 sudo dnf install -y vim wget curl openssl zip p7zip \
   flatpak-xdg-utils steam-devices android-udev-rules \
   oversteer-udev solaar-udev openrgb-udev-rules
-
-# Update system packages
-sudo dnf update -y
 ```
-
-Better media codecs (please use the commands based on your graphics card):
-
-```bash
-# Add RPM-Fusion
-# https://rpmfusion.org/Configuration
-sudo dnf install \
-  https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-  https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-
-# Install media codecs with RPM-Fusion
-# https://rpmfusion.org/Howto/Multimedia
-sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
-sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-sudo dnf install -y ffmpeg-libs libva libva-utils
-
-# Codecs for AMD
-sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld
-sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
-sudo dnf swap -y mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
-sudo dnf swap -y mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
-
-# Codecs for Nvidia
-sudo dnf install -y libva-nvidia-driver
-sudo dnf install -y libva-nvidia-driver.i686
-sudo dnf install -y libva-nvidia-driver.x86_64
-
-# Codecs for Intel
-sudo dnf install -y intel-media-driver
-```
-
-## System Optimizations
 
 Makes startup boot significantly faster by disabling network await:
 
@@ -105,7 +122,7 @@ flatpak remove -y org.gnome.Snapshot
 flatpak remove -y org.gnome.Maps
 
 # Reinstall apps from FlatHub and update everything else
-REINSTALL=$(flatpak list --columns=application | grep -v fedora)
+REINSTALL=$(flatpak list --app --columns=application,origin | grep fedora | awk '{print $1}')
 flatpak install -y --reinstall flathub $(echo $REINSTALL)
 flatpak update -y
 
@@ -115,19 +132,12 @@ flatpak remote-delete fedora
 
 ## Native Applications
 
-You will find the native game applications here, but Steam is the only application that I recommend to install natively:
+Steam is the only application that I recommend to install natively:
 
 ```bash
 # Steam & SteamVR
 # SteamVR works only with native application
 sudo dnf install -y steam
-
-# Heroic Games Launcher 
-sudo dnf copr enable -y atim/heroic-games-launcher
-sudo dnf install -y heroic-games-launcher-bin
-
-# Lutris
-sudo dnf install -y lutris
 ```
 
 ## Gaming Applications
@@ -205,6 +215,7 @@ Additional applications for specific use cases are available in the next topics.
 Proton GE compatibility layer for non Steam games and applications:
 
 ```bash
+# Flatpak extension
 # When using Steam flatpak
 flatpak install -y flathub com.valvesoftware.Steam.CompatibilityTool.Proton-GE
 ```
@@ -212,20 +223,16 @@ flatpak install -y flathub com.valvesoftware.Steam.CompatibilityTool.Proton-GE
 SteamOS session compositing window manager with GameScope:
 
 ```bash
-# Usage on Steam: gamescope -- %command%
-sudo dnf install -y gamescope
-
 # Flatpak extension
+# Usage on Steam: gamescope -- %command%
 flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.gamescope
 ```
 
 Vulkan post processing layer to enhance the visual graphics with VkBasalt:
 
 ```bash
-# Usage on Steam: ENABLE_VKBASALT=1 %command%
-sudo dnf install -y vkBasalt
-
 # Flatpak extension
+# Usage on Steam: ENABLE_VKBASALT=1 %command%
 flatpak install -y flathub org.freedesktop.Platform.VulkanLayer.vkBasalt
 ```
 
@@ -298,7 +305,5 @@ That is it, just reboot the system and you are done:
 ```bash
 systemctl reboot
 ```
-
-Linux is always improving on gaming, but please be aware that most online games does not work due to anti-cheat programs.
 
 Have a good gaming!

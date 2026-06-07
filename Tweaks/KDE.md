@@ -6,9 +6,14 @@ These commands will automatically optimize the KDE system with a better UI desig
 
 ```bash
 # Set screen resolution
-# 4K / 144hz / 150% scaling
+# DisplayPort / 4K / 144hz / 150% scaling
 kscreen-doctor output.DP-3.mode.3840x2160@144
 kscreen-doctor output.DP-3.scale.1.5 
+
+# Set screen resolution
+# HDMI / 4K / 120hz / 150% scaling
+kscreen-doctor output.HDMI-4.mode.3840x2160@120
+kscreen-doctor output.HDMI-4.scale.1.5 
 
 # Set dark theme
 kwriteconfig6 --notify --file kdeglobals --group KDE \
@@ -16,7 +21,10 @@ kwriteconfig6 --notify --file kdeglobals --group KDE \
 
 # Set custom icon theme
 wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.local/share/icons" sh
-kwriteconfig6 --notify --file kdeglobals --group Icons --key Theme "Papirus-Dark"
+kwriteconfig6 --notify --file kdeglobals --group Icons --key Theme "Papirus"
+
+# Apply settings
+sudo systemctl restart display-manager
 ```
 
 Manual tweaks for better gaming centric design:

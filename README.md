@@ -15,3 +15,7 @@ It is cross platform, with Steam as the main library place to launch your games.
 - [Windows 11](./Tweaks/Windows%2011.md)
 - [Gnome](./Tweaks/Gnome.md)
 - [KDE](./Tweaks/KDE.md)
+
+## Observations
+
+- Linux is always improving on gaming, but please be aware that most online games does not work due to anti-cheat programs.
