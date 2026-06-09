@@ -14,7 +14,7 @@ It is cross platform, with Steam as the main library place to launch your games.
 ## Tweaks
 
 - [Windows 11](./Tweaks/Windows%2011.md)
-- [Windows 11](./Tweaks/Linux.md)
+- [Linux](./Tweaks/Linux.md)
 - [Gnome](./Tweaks/Gnome.md)
 - [KDE](./Tweaks/KDE.md)
 
