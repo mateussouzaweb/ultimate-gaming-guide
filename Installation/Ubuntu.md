@@ -109,6 +109,7 @@ sudo chmod +x ./nicedeck
 ./nicedeck install --programs=gog-galaxy
 ./nicedeck install --programs=amazon-games
 ./nicedeck install --programs=battle-net
+./nicedeck install --programs=rockstar-games-launcher
 
 # Alternative Launchers
 ./nicedeck install --programs=heroic-games
