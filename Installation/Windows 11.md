@@ -80,8 +80,6 @@ wget $REPOSITORY/releases/latest/download/nicedeck-windows-cli-amd64.exe -OutFil
 .\nicedeck.exe install --programs=amazon-games
 .\nicedeck.exe install --programs=battle-net
 .\nicedeck.exe install --programs=rockstar-games-launcher
-
-# Alternative Launchers
 .\nicedeck.exe install --programs=heroic-games
 .\nicedeck.exe install --programs=es-de
 
@@ -117,7 +115,7 @@ wget $REPOSITORY/releases/latest/download/nicedeck-windows-cli-amd64.exe -OutFil
 .\nicedeck.exe install --programs=mgba
 .\nicedeck.exe install --programs=ppsspp
 .\nicedeck.exe install --programs=redream
-.\nicedeck.exe install --programs=simple64
+.\nicedeck.exe install --programs=gopher64
 .\nicedeck.exe install --programs=vita3k
 .\nicedeck.exe install --programs=xemu
 ```

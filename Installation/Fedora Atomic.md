@@ -178,11 +178,7 @@ sudo chmod +x ./nicedeck
 ./nicedeck install --programs=amazon-games
 ./nicedeck install --programs=battle-net
 ./nicedeck install --programs=rockstar-games-launcher
-
-# Alternative Launchers
 ./nicedeck install --programs=heroic-games
-./nicedeck install --programs=lutris
-./nicedeck install --programs=bottles
 ./nicedeck install --programs=es-de
 
 # Others
@@ -218,7 +214,7 @@ sudo chmod +x ./nicedeck
 ./nicedeck install --programs=mgba
 ./nicedeck install --programs=ppsspp
 ./nicedeck install --programs=redream
-./nicedeck install --programs=simple64
+./nicedeck install --programs=gopher64
 ./nicedeck install --programs=vita3k
 ./nicedeck install --programs=xemu
 ```
