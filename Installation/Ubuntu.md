@@ -49,13 +49,13 @@ sudo snap remove firefox
 Install basic packages and media codecs:
 
 ```bash
-# Add basic packages
-sudo apt install -y vim wget curl openssl zip p7zip \
-  flatpak-xdg-utils steam-devices android-udev-rules \
-  oversteer-udev solaar-udev openrgb-udev-rules
-
 # Enable the Multiverse repository
 sudo add-apt-repository multiverse
+sudo apt update
+
+# Add basic packages
+sudo apt install -y vim wget curl openssl zip 7zip \
+  flatpak-xdg-utils steam-devices android-udev-rules
 
 # Install media codecs
 sudo apt install -y ubuntu-restricted-extras
