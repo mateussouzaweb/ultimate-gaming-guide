@@ -83,7 +83,9 @@ Steam is the only application that I recommend to install natively:
 ```bash
 # Steam & SteamVR
 # SteamVR works only with native application
-sudo apt install -y steam
+wget https://cdn.akamai.steamstatic.com/client/installer/steam.deb
+sudo apt install ./steam.deb -y
+rm steam.deb
 ```
 
 ## Gaming Applications
