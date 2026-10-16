@@ -118,6 +118,9 @@ wget $REPOSITORY/releases/latest/download/nicedeck-windows-cli-amd64.exe -OutFil
 .\nicedeck.exe install-programs --programs=gopher64
 .\nicedeck.exe install-programs --programs=vita3k
 .\nicedeck.exe install-programs --programs=xemu
+
+# Remove temporary copy after installation 
+rm .\nicedeck.exe
 ```
 
 Additional applications for specific use cases are available in the next topics.

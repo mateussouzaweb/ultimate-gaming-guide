@@ -217,6 +217,9 @@ sudo chmod +x ./nicedeck
 ./nicedeck install-programs --programs=gopher64
 ./nicedeck install-programs --programs=vita3k
 ./nicedeck install-programs --programs=xemu
+
+# Remove temporary copy after installation 
+rm ./nicedeck
 ```
 
 ## In Game Utilities
