@@ -7,6 +7,7 @@ It is cross platform, with Steam as the main library place to launch your games.
 ## Installation
 
 - [Windows 11](./Installation/Windows%2011.md)
+- [SteamOS](./Installation/SteamOS.md)
 - [Fedora](./Installation/Fedora.md)
 - [Fedora Atomic](./Installation/Fedora%20Atomic.md)
 - [Ubuntu](./Installation/Ubuntu.md)
