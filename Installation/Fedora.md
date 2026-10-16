@@ -153,56 +153,56 @@ sudo wget $REPOSITORY/releases/latest/download/nicedeck-linux-amd64 -O ./nicedec
 sudo chmod +x ./nicedeck
 
 # Self installer
-./nicedeck install --programs=nicedeck
+./nicedeck install-programs --programs=nicedeck
 
 # Gaming Stores & Launchers
-./nicedeck install --programs=steam
-./nicedeck install --programs=epic-games
-./nicedeck install --programs=ea-app
-./nicedeck install --programs=ubisoft-connect
-./nicedeck install --programs=gog-galaxy
-./nicedeck install --programs=amazon-games
-./nicedeck install --programs=battle-net
-./nicedeck install --programs=rockstar-games-launcher
-./nicedeck install --programs=heroic-games
-./nicedeck install --programs=es-de
+./nicedeck install-programs --programs=steam
+./nicedeck install-programs --programs=epic-games
+./nicedeck install-programs --programs=ea-app
+./nicedeck install-programs --programs=ubisoft-connect
+./nicedeck install-programs --programs=gog-galaxy
+./nicedeck install-programs --programs=amazon-games
+./nicedeck install-programs --programs=battle-net
+./nicedeck install-programs --programs=rockstar-games-launcher
+./nicedeck install-programs --programs=heroic-games
+./nicedeck install-programs --programs=es-de
 
 # Others
-./nicedeck install --programs=discord
-./nicedeck install --programs=proton-plus
+./nicedeck install-programs --programs=discord
+./nicedeck install-programs --programs=proton-plus
 
 # Streaming
-./nicedeck install --programs=moonlight
-./nicedeck install --programs=chiaki-ng
-./nicedeck install --programs=geforce-now
-./nicedeck install --programs=xbox-cloud-gaming
+./nicedeck install-programs --programs=moonlight
+./nicedeck install-programs --programs=chiaki-ng
+./nicedeck install-programs --programs=geforce-now
+./nicedeck install-programs --programs=xbox-cloud-gaming
 
 # Browsers
-./nicedeck install --programs=brave-browser
-./nicedeck install --programs=google-chrome
-./nicedeck install --programs=microsoft-edge
-./nicedeck install --programs=firefox
+./nicedeck install-programs --programs=brave-browser
+./nicedeck install-programs --programs=google-chrome
+./nicedeck install-programs --programs=microsoft-edge
+./nicedeck install-programs --programs=firefox
 
 # Emulators
-./nicedeck install --programs=cemu
-./nicedeck install --programs=eden
-./nicedeck install --programs=pcsx2
-./nicedeck install --programs=rpcs3
-./nicedeck install --programs=ryujinx
-./nicedeck install --programs=shadps4
-./nicedeck install --programs=xenia
+./nicedeck install-programs --programs=cemu
+./nicedeck install-programs --programs=eden
+./nicedeck install-programs --programs=pcsx2
+./nicedeck install-programs --programs=rpcs3
+./nicedeck install-programs --programs=ryujinx
+./nicedeck install-programs --programs=shadps4
+./nicedeck install-programs --programs=xenia
 
-./nicedeck install --programs=azahar
-./nicedeck install --programs=dolphin
-./nicedeck install --programs=duckstation
-./nicedeck install --programs=flycast
-./nicedeck install --programs=melonds
-./nicedeck install --programs=mgba
-./nicedeck install --programs=ppsspp
-./nicedeck install --programs=redream
-./nicedeck install --programs=gopher64
-./nicedeck install --programs=vita3k
-./nicedeck install --programs=xemu
+./nicedeck install-programs --programs=azahar
+./nicedeck install-programs --programs=dolphin
+./nicedeck install-programs --programs=duckstation
+./nicedeck install-programs --programs=flycast
+./nicedeck install-programs --programs=melonds
+./nicedeck install-programs --programs=mgba
+./nicedeck install-programs --programs=ppsspp
+./nicedeck install-programs --programs=redream
+./nicedeck install-programs --programs=gopher64
+./nicedeck install-programs --programs=vita3k
+./nicedeck install-programs --programs=xemu
 ```
 
 Additional applications for specific use cases are available in the next topics.

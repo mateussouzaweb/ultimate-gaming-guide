@@ -69,55 +69,55 @@ $REPOSITORY="https://github.com/mateussouzaweb/nicedeck"
 wget $REPOSITORY/releases/latest/download/nicedeck-windows-cli-amd64.exe -OutFile nicedeck.exe
 
 # Self installer
-.\nicedeck.exe install --programs=nicedeck
+.\nicedeck.exe install-programs --programs=nicedeck
 
 # Gaming Stores & Launchers
-.\nicedeck.exe install --programs=steam
-.\nicedeck.exe install --programs=epic-games
-.\nicedeck.exe install --programs=ea-app
-.\nicedeck.exe install --programs=ubisoft-connect
-.\nicedeck.exe install --programs=gog-galaxy
-.\nicedeck.exe install --programs=amazon-games
-.\nicedeck.exe install --programs=battle-net
-.\nicedeck.exe install --programs=rockstar-games-launcher
-.\nicedeck.exe install --programs=heroic-games
-.\nicedeck.exe install --programs=es-de
+.\nicedeck.exe install-programs --programs=steam
+.\nicedeck.exe install-programs --programs=epic-games
+.\nicedeck.exe install-programs --programs=ea-app
+.\nicedeck.exe install-programs --programs=ubisoft-connect
+.\nicedeck.exe install-programs --programs=gog-galaxy
+.\nicedeck.exe install-programs --programs=amazon-games
+.\nicedeck.exe install-programs --programs=battle-net
+.\nicedeck.exe install-programs --programs=rockstar-games-launcher
+.\nicedeck.exe install-programs --programs=heroic-games
+.\nicedeck.exe install-programs --programs=es-de
 
 # Others
-.\nicedeck.exe install --programs=discord
+.\nicedeck.exe install-programs --programs=discord
 
 # Streaming
-.\nicedeck.exe install --programs=moonlight
-.\nicedeck.exe install --programs=chiaki-ng
-.\nicedeck.exe install --programs=geforce-now
-.\nicedeck.exe install --programs=xbox-cloud-gaming
+.\nicedeck.exe install-programs --programs=moonlight
+.\nicedeck.exe install-programs --programs=chiaki-ng
+.\nicedeck.exe install-programs --programs=geforce-now
+.\nicedeck.exe install-programs --programs=xbox-cloud-gaming
 
 # Browsers
-.\nicedeck.exe install --programs=brave-browser
-.\nicedeck.exe install --programs=google-chrome
-.\nicedeck.exe install --programs=microsoft-edge
-.\nicedeck.exe install --programs=firefox
+.\nicedeck.exe install-programs --programs=brave-browser
+.\nicedeck.exe install-programs --programs=google-chrome
+.\nicedeck.exe install-programs --programs=microsoft-edge
+.\nicedeck.exe install-programs --programs=firefox
 
 # Emulators
-.\nicedeck.exe install --programs=cemu
-.\nicedeck.exe install --programs=eden
-.\nicedeck.exe install --programs=pcsx2
-.\nicedeck.exe install --programs=rpcs3
-.\nicedeck.exe install --programs=ryujinx
-.\nicedeck.exe install --programs=shadps4
-.\nicedeck.exe install --programs=xenia
+.\nicedeck.exe install-programs --programs=cemu
+.\nicedeck.exe install-programs --programs=eden
+.\nicedeck.exe install-programs --programs=pcsx2
+.\nicedeck.exe install-programs --programs=rpcs3
+.\nicedeck.exe install-programs --programs=ryujinx
+.\nicedeck.exe install-programs --programs=shadps4
+.\nicedeck.exe install-programs --programs=xenia
 
-.\nicedeck.exe install --programs=azahar
-.\nicedeck.exe install --programs=dolphin
-.\nicedeck.exe install --programs=duckstation
-.\nicedeck.exe install --programs=flycast
-.\nicedeck.exe install --programs=melonds
-.\nicedeck.exe install --programs=mgba
-.\nicedeck.exe install --programs=ppsspp
-.\nicedeck.exe install --programs=redream
-.\nicedeck.exe install --programs=gopher64
-.\nicedeck.exe install --programs=vita3k
-.\nicedeck.exe install --programs=xemu
+.\nicedeck.exe install-programs --programs=azahar
+.\nicedeck.exe install-programs --programs=dolphin
+.\nicedeck.exe install-programs --programs=duckstation
+.\nicedeck.exe install-programs --programs=flycast
+.\nicedeck.exe install-programs --programs=melonds
+.\nicedeck.exe install-programs --programs=mgba
+.\nicedeck.exe install-programs --programs=ppsspp
+.\nicedeck.exe install-programs --programs=redream
+.\nicedeck.exe install-programs --programs=gopher64
+.\nicedeck.exe install-programs --programs=vita3k
+.\nicedeck.exe install-programs --programs=xemu
 ```
 
 Additional applications for specific use cases are available in the next topics.
